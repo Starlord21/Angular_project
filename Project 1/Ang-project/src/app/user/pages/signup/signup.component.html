@@ -1,8 +1,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 offset-2">
+			<div *ngIf="afterSubmit" class="alert alert-success">
+                You are successfuly Registrered, For Login <a routerLink="/login">Click Here</a>
+            </div>
 			<form [formGroup]="regForm">
-				<div class="card text-white" style="background-color: #926DDE;">
+				<div class="card text-white" style="background-color: #080303;">
 					<div class="card-header">
 						<h3 class="text-center">Signup Form</h3>
 					</div>
@@ -10,26 +13,60 @@
 						<div class="form-group">
 							<label>Full Name</label>
 							<input [ngClass]="{'is-invalid': regForm.controls.fullname.errors && checkForm}" formControlName="fullname" type="text" class="form-control" placeholder="full name">
+							<div class="invalid-feedback" *ngIf="regForm.controls.fullname.errors">
+								insert your full name
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Email</label>
 							<input [ngClass]="{'is-invalid': regForm.controls.email.errors && checkForm}" formControlName="email" class="form-control" type="text" placeholder="Email">
+							<div class="invalid-feedback" *ngIf="regForm.controls.email.errors">
+								<div *ngIf="regForm.controls.email.errors.required">
+									insert your email
+								</div>
+								<div *ngIf="regForm.controls.email.errors.email">
+									Check your email
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>contact</label>
 							<input [ngClass]="{'is-invalid': regForm.controls.contact.errors && checkForm}" formControlName="contact" class="form-control" type="text" placeholder="contact">
+							<div class="invalid-feedback" *ngIf="regForm.controls.contact.errors">
+							<div *ngIf="regForm.controls.contact.errors.required">
+								insert your contact number
+							</div>
+							<div *ngIf="regForm.controls.contact.errors.pattern">
+								Contact number must be atleast 10 digit
+							</div>
+
+							</div>
 						</div>
 						<div class="form-group">
 							<label>password</label>
 							<input [ngClass]="{'is-invalid': regForm.controls.password.errors && checkForm}" formControlName="password" class="form-control" type="password" placeholder="password">
+							<div class="invalid-feedback" *ngIf="regForm.controls.password.errors">
+								insert your password
+							</div>
 						</div>
 						<div class="form-group">
-							<label>re_password</label>
-							<input [ngClass]="{'is-invalid': regForm.controls.re_password.errors && checkForm}" formControlName="re_password" class="form-control" type="password" placeholder="re-password">
-						</div>
+							<label>Re-Password</label>
+								<input [ngClass]="{'is-invalid' : regForm.controls.re_password.errors && checkForm}" formControlName="re_password" type="password" placeholder="Re-Password" class="form-control" />
+								<div class="invalid-feedback" *ngIf="regForm.controls.re_password.errors && checkForm">
+									<div *ngIf="regForm.controls.re_password.errors.required">
+										Insert Your Re-Password
+									</div>
+									<div *ngIf="regForm.controls.re_password.errors.repasserr">
+										Password and Re-Password not Matched
+									</div>
+								</div>
+							</div>
 						<div class="form-group">
 							<label>Address</label>
 							<textarea [ngClass]="{'is-invalid': regForm.controls.address.errors && checkForm}" formControlName="address" class="form-control"></textarea>
+							<div class="invalid-feedback" *ngIf="regForm.controls.address.errors">
+								insert your address
+							</div>
 						</div>
 						<div class="form-group">
 							<label>city</label>
@@ -40,6 +77,9 @@
 								<option for="haridwar">Haridwar</option>
 								<option for="indore">Indore</option>
 							</select>
+							<div class="invalid-feedback" *ngIf="regForm.controls.city.errors">
+								select your city
+							</div>
 						</div>
 						<br />
 						<label>Gender</label>
@@ -52,12 +92,11 @@
 								<div class="col-md-6">
 									<input [ngClass]="{'is-invalid': regForm.controls.gender.errors && checkForm}" formControlName="gender" value="female" id="female"  type="radio" class="custom-control-input">
 									<label for="female" class="custom-control-label">female</label>
+									<div class="invalid-feedback" *ngIf="regForm.controls.gender.errors">
+										choose your gender
+									</div>
 								</div>
 							</div>
-						</div>
-						<br />
-						<div class="form-group">
-							<label class="form-check-label"><input [ngClass]="{'is-invalid': regForm.controls.check.errors && checkForm}" formControlName="check" type="checkbox" required="required" > I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
 						</div>
 					</div>
 					<div class="card-footer">

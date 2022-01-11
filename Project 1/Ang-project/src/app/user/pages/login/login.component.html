@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-white">
+                <form [formGroup]="loginForm" class="box">
+                    <h1>Login</h1>
+                    <p class="text-muted"> Please enter your login and password!</p> <input [ngClass]="{'is-invalid': loginForm.controls.email.errors && loginCheck}" formControlName="email" type="text"  placeholder="email"> 
+                    <div class="invalid-feedback" *ngIf="loginForm.controls.email.errors">
+                    <div *ngIf="loginForm.controls.email.errors.required">
+                        insert your username/email
+                    </div>
+                    <div *ngIf="loginForm.controls.email.errors.email">
+                        check your username
+                    </div>
+
+                    </div>
+                    
+                    <input [ngClass]="{'is-invalid': loginForm.controls.password.errors && loginCheck}" formControlName="password" type="password" placeholder="Password">
+                    <div class="invalid-feedback" *ngIf="loginForm.controls.password.errors">
+                        insert your password
+                    </div>
+                     <a class="forgot text-muted" href="#">Forgot password?</a> 
+                     
+                     <input (click)="submit()" type="submit" name="" value="Login" href="#">
+                    <div class="col-md-12">
+                     <a routerLink="/" class="nav-item nav-link active"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;<span class="text-white">Don't have account?</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
