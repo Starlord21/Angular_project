@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyaccountComponent } from './pages/myaccount/myaccount.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SignupComponent,
     LoginComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MyaccountComponent
   ],
   imports: [
     CommonModule,

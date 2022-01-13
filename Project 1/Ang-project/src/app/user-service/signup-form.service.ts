@@ -12,5 +12,12 @@ export class SignupFormService {
   save(obj:any){
     return this._http.post<any>("http://localhost:3000/api/user", obj);
   }
-  
+ getAll()
+ {
+   return this._http.get<any>(this.apiUrl+"/api/user")
+ }
+ update(id:any, obj:any){
+  return this._http.put<any>(this.apiUrl+"/api/user/"+id, obj);
+
+}
 }

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   loginCheck=false;
+  errmsg= ""
   constructor(private _fb : FormBuilder, private _loginauth : LoginauthService, private _router : Router) 
   {
     this.loginForm = this._fb.group
@@ -32,9 +33,25 @@ submit()
   {
     // console.log(this.loginForm.value)
     this._loginauth.doLogin(this.loginForm.value).subscribe(result=>{
-      // localStorage.setItem("user_token", result.token)
-      this._router.navigate(["/home"])
-    })
+      // console.log("---------", result);
+      localStorage.setItem("usertoken", result.token);
+      this._router.navigate(["/myaccount"])
+   
+   },err=>{
+     if(err.error.type == 1)
+     {
+       this.errmsg = "username/email & password is incorrect"
+     }
+     if(err.error.type == 2)
+     {
+       this.errmsg = "password is incorrect"
+     }
+     if(err.error.type == 3)
+     {
+       this.errmsg = "Your Account has been disabled temporarily"
+     }
+   }
+   )
   }
 }
 

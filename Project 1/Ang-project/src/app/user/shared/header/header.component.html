@@ -21,15 +21,11 @@
 	</button>
 	<!-- Collection of nav links, forms, and other content for toggling -->
 	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">		
-		<form class="navbar-form form-inline">
-			<div class="input-group search-box">								
-				<input type="text" id="search" class="form-control" placeholder="Search here...">
-				<span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-			</div>
-		</form>
+		
 		<div class="navbar-nav ml-auto">
-			<a routerLink="/" class="nav-item nav-link active"><i class="fa fa-user-plus" aria-hidden="true"></i><span>Signup</span></a>
-			<a routerLink="/login" class="nav-item nav-link active"><i class="fa fa-sign-in" aria-hidden="true"></i><span>Login</span></a>
+			<ng-template [ngIf]="_loginauth.LoggedIn()" [ngIfElse]="notloggedin">
+
+			
 			<a routerLink="#" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a>
 			<a routerLink="#" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Projects</span></a>
 			<a routerLink="#" class="nav-item nav-link"><i class="fa fa-users"></i><span>Team</span></a>
@@ -44,10 +40,16 @@
 					<a routerLink="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
 					<a routerLink="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
 					<div class="divider dropdown-divider"></div>
-					<a routerLink="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+					<a routerLink="#" (click)="_loginauth.LoggedOut()" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
 				</div>
 			</div>
+		</ng-template>
+		<ng-template #notloggedin>
+			<a routerLink="/" class="nav-item nav-link active"><i class="fa fa-user-plus" aria-hidden="true"></i><span>signup</span></a>
+			<a routerLink="/login" class="nav-item nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i><span>Login</span></a>
+		</ng-template>
 		</div>
+	
 	</div>
 </nav>
 </body>

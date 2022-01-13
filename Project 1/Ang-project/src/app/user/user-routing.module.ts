@@ -6,6 +6,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserComponent } from './user.component';
+import { MyaccountComponent } from './pages/myaccount/myaccount.component';
+import { BackdoorGuard } from './guard/backdoor.guard';
+import { AntiBackdoorGuard } from './guard/anti-backdoor.guard';
 
 const routes: Routes = 
 [
@@ -16,11 +19,13 @@ const routes: Routes =
      [
     {
       path : "",
-      component : SignupComponent
+      component : SignupComponent,
+      canActivate : [AntiBackdoorGuard]
     },
     {
       path : "login",
-      component : LoginComponent
+      component : LoginComponent,
+      canActivate : [AntiBackdoorGuard]
     },
     {
       path : "home",
@@ -33,6 +38,11 @@ const routes: Routes =
     {
       path : "about",
       component : AboutComponent
+    },
+    {
+      path : "myaccount",
+      component : MyaccountComponent,
+      canActivate : [BackdoorGuard]
     }
   ]
   }
