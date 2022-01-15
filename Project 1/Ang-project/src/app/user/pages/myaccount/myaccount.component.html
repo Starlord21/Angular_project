@@ -1,0 +1,185 @@
+<div class="container" my-5 style="min-height: 650px;">
+    <div class="row my-5">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 offset-3">
+                    <div *ngIf ="userInfo" class="col-md-8 offset-2">
+                        <table class="table">
+                            <thead>
+                                <tr  class="table-success">
+                                     <th scope="col">Name</th>
+                                     <th scope="col">{{userInfo.fullname}}</th>
+                                </tr>
+                                <tr  class="table-success">
+                                     <th scope="col">Email</th>
+                                     <th scope="col">{{userInfo.email}}</th>
+                                </tr>
+                                <tr  class="table-success">
+                                     <th scope="col">contact</th>
+                                     <th scope="col">{{userInfo.contact}}</th>
+                                </tr>
+                                <tr  class="table-success">
+                                     <th scope="col">gender</th>
+                                     <th scope="col">{{userInfo.gender}}</th>
+                                </tr>
+                                <tr  class="table-success">
+                                     <th scope="col">City</th>
+                                     <th scope="col">{{userInfo.city}}</th>
+                                </tr>
+                                <tr  class="table-success">
+                                     <th scope="col">Address</th>
+                                     <th scope="col">{{userInfo.address}}</th>
+                                </tr>
+                            </thead>
+                            <tr  class="table-dark">
+                                <th scope="col"><button data-target="#updateinfo" data-toggle="modal" class="btn btn-primary" >update info</button></th>
+                                <th scope="col"><button data-target="#updatepassword" data-toggle="modal" class="btn btn-primary" >Change Password</button></th>
+                                
+                           </tr>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+</div>
+
+<div class="modal fade" id="updateinfo">
+    <div class="modal-dialog">
+       
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                Update Profile
+            </div>
+            <form [formGroup]="updateProfile">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input [ngClass]="{'is-invalid': updateProfile.controls.fullname.errors && checkForm}" formControlName="fullname" type="text" class="form-control" placeholder="full name">
+                    <div class="invalid-feedback" *ngIf="updateProfile.controls.fullname.errors">
+                        insert your full name
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input [ngClass]="{'is-invalid': updateProfile.controls.email.errors && checkForm}" formControlName="email" class="form-control" type="text" placeholder="Email">
+                    <div class="invalid-feedback" *ngIf="updateProfile.controls.email.errors">
+                        <div *ngIf="updateProfile.controls.email.errors.required">
+                            insert your email
+                        </div>
+                        <div *ngIf="updateProfile.controls.email.errors.email">
+                            Check your email
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>contact</label>
+                    <input [ngClass]="{'is-invalid': updateProfile.controls.contact.errors && checkForm}" formControlName="contact" class="form-control" type="text" placeholder="contact">
+                    <div class="invalid-feedback" *ngIf="updateProfile.controls.contact.errors">
+                    <div *ngIf="updateProfile.controls.contact.errors.required">
+                        insert your contact number
+                    </div>
+                    <div *ngIf="updateProfile.controls.contact.errors.pattern">
+                        Contact number must be atleast 10 digit
+                    </div>
+
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea [ngClass]="{'is-invalid': updateProfile.controls.address.errors && checkForm}" formControlName="address" class="form-control"></textarea>
+                    <div class="invalid-feedback" *ngIf="updateProfile.controls.address.errors">
+                        insert your address
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>city</label>
+                    <select [ngClass]="{'is-invalid': updateProfile.controls.city.errors && checkForm}" formControlName="city" class="form-control">
+                        <option for="">select</option>
+                        <option for="delhi">Delhi</option>
+                        <option for="pune">Pune</option>
+                        <option for="haridwar">Haridwar</option>
+                        <option for="indore">Indore</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="updateProfile.controls.city.errors">
+                        select your city
+                    </div>
+                </div>
+                <br />
+                <label>Gender</label>
+                <div class="gen">
+                    <div class="row custom-control custom-radio">
+                        <div class="col-md-6">
+                           <input [ngClass]="{'is-invalid': updateProfile.controls.gender.errors && checkForm}" formControlName="gender" value="male" id="male" type="radio" class="custom-control-input">
+                           <label for="male" class="custom-control-label">male</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input [ngClass]="{'is-invalid': updateProfile.controls.gender.errors && checkForm}" formControlName="gender" value="female" id="female"  type="radio" class="custom-control-input">
+                            <label for="female" class="custom-control-label">female</label>
+                            <div class="invalid-feedback" *ngIf="updateProfile.controls.gender.errors">
+                                choose your gender
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+            </div>
+        </form>
+            <div class="modal-footer">
+                <button class="btn btn-primary" (click)="update(closebtn)">update</button>
+                <button class="btn btn-primary" data-dismiss="modal" #closebtn>close</button>
+            </div>
+        </div>
+       
+       
+    </div>
+</div>
+
+
+<div class="modal fade" id="updatepassword">
+    <div class="modal-dialog bg-dark" >
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" style="justify-content: center;">
+                <h3 style="background-color: dark;">change password</h3>
+            </div>
+            <form [formGroup]="passForm">
+               <div class="modal-body bg-dark text-white">
+                <div class="form-group">
+                    <label>old_password</label>
+                    <input [ngClass]="{'is-invalid': passForm.controls.oldpass.errors && checkpass}" formControlName="oldpass" class="form-control" type="password" placeholder="oldpass">
+                    <div class="invalid-feedback" *ngIf="passForm.controls.oldpass.errors">
+                        insert your password
+                    </div>
+                </div>   
+
+                <div class="form-group">
+                    <label>password</label>
+                    <input [ngClass]="{'is-invalid': passForm.controls.password.errors && checkpass}" formControlName="password" class="form-control" type="password" placeholder="password">
+                    <div class="invalid-feedback" *ngIf="passForm.controls.password.errors">
+                        insert your password
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Re-Password</label>
+                        <input [ngClass]="{'is-invalid' : passForm.controls.re_password.errors && checkpass}" formControlName="re_password" type="password" placeholder="Re-Password" class="form-control" />
+                        <div class="invalid-feedback" *ngIf="passForm.controls.re_password.errors && checkpass">
+                            <div *ngIf="passForm.controls.re_password.errors.required">
+                                Insert Your Re-Password
+                            </div>
+                            <div *ngIf="passForm.controls.re_password.errors.repasserr">
+                                Password and Re-Password not Matched
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </form>
+            <div class="modal-footer text-white bg-dark">
+                <button class="btn btn-primary" (click)="updatepass(close)">update</button>
+                <button class="btn btn-primary" data-dismiss="modal" #close>close</button>
+            </div>
+        </div>
+    </div>
+</div>

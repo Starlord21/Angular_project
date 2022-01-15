@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center text-dark">User's Access control</h3>
+                </div>
+                <div class="card-body">
+                    <!--Table-->
+<table class="table table-bordered table-striped w-auto">
+
+    <!--Table head-->
+    <thead class="bg-dark text-white text-center">
+      <tr>
+        <th>S.no</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>contact</th>
+        <th>status</th>
+        
+      </tr>
+    </thead>
+    <!--Table head-->
+  
+    <!--Table body-->
+    <tbody class=" text-center">
+      <tr *ngFor ="let t of allUser, let n = index" class="table-info">
+       
+        <td>{{n+1}}</td>
+        <td>{{t.fullname}}</td>
+        <td>{{t.email}}</td>
+        <td>{{t.contact}}</td>
+        <td><button class="btn btn-sm" [ngClass]= "{'btn-success' : t.status==0, 'btn-danger' : t.status==1}" (click)="change(t)">{{t.status==0 ? "Enable" : "Disable"}}</button></td>
+            <!-- <button class="btn btn-sm" [ngClass]="{'btn-success' : u.status == 0, 'btn-danger' : u.status == 1}"  (click)="change(u)">{{ u.status==0 ? 'Enable' : 'Disabled' }}</button>< -->
+        
+      </tr>
+
+    </tbody>
+    <!--Table body-->
+  
+  
+  </table>
+  <!--Table-->
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
