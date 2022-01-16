@@ -23,11 +23,12 @@
 	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">		
 		
 		<div class="navbar-nav ml-auto">
-			<!-- <ng-template [ngIf]="_loginauth.LoggedIn()" [ngIfElse]="notloggedin"> -->
+			<ng-template [ngIf]="_loginauth.LoggedIn()" [ngIfElse]="notloggedin">
 
 			
 			<a routerLink="#" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a>
 			<a routerLink="#" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Projects</span></a>
+			<a routerLink="/admin/file-storage" class="nav-item nav-link"><i class="fa fa-cloud" aria-hidden="true"></i><span>storage Access</span></a>
 			<a routerLink="#" class="nav-item nav-link"><i class="fa fa-users"></i><span>Team</span></a>
 			<a routerLink="/admin/users" class="nav-item nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i><span>Users-Access</span></a>
 			<a routerLink="#" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Reports</span></a>
@@ -41,14 +42,14 @@
 					<a routerLink="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
 					<a routerLink="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
 					<div class="divider dropdown-divider"></div>
-					<a routerLink="#"  class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+					<a routerLink="#"  class="dropdown-item" (click)="_loginauth.LoggedOut()"><i class="material-icons">&#xE8AC;</i> Logout</a>
 				</div>
 			</div>
-		<!-- </ng-template> -->
-		<!-- <ng-template #notloggedin> -->
+		</ng-template>
+		<ng-template #notloggedin>
 			<a routerLink="/" class="nav-item nav-link active"><i class="fa fa-user-plus" aria-hidden="true"></i><span>signup</span></a>
 			<a routerLink="/login" class="nav-item nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i><span>Login</span></a>
-		<!-- </ng-template> -->
+		</ng-template>
 		</div>
 	
 	</div>

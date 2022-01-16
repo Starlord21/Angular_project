@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AdminloginauthService } from '../../service/adminloginauth.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _loginauth : AdminloginauthService) { }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,112 @@
+<div class="container mt-5 mb-3">
+    <button type="button" data-target="#addfile" data-toggle="modal" class="btn btn-outline-primary btn-rounded waves-effect purple-gradient">Add File</button>
+    <div class="row">
+        
+        <div class="col-md-6 offset-3">
+            <div *ngFor="let t of fileInfo" class="card p-3 mb-2 bg-info ">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <!-- ICON  -->
+                        <div class="icon"> <span [innerHtml]="t.icon"></span> </div>
+                        <div class="ms-2 c-details">
+                            <!-- title -->
+                            <h6 class="mb-0 text-white">{{t.type}}</h6> <span></span>
+                        </div>
+                    </div>
+                    <div class="badge"> <button type="submit"  class="btn btn-danger btn-rounded waves-effect" (click)="delfile(t)" >Delete</button>&nbsp;<button type="submit" data-target="#addfile" data-toggle="modal"  class="btn btn-danger btn-rounded waves-effect" (click)="editfile(t)"  >Edit</button></div>
+                    
+                </div>
+                <div class="mt-5">
+                    <!-- file type naME  -->
+                    <h3 class="heading">{{t.type_name}}</h3>
+                    <div class="mt-5">
+                        
+                        <div class="mt-3"> <span class="text1">32 Applied <span class="text2">of 50 capacity</span></span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- ---------------------------------ADD FILE----------------------------- -->
+<div class="modal fade" id="addfile">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            </div>
+            <form [formGroup]="fileForm">
+                <div class="modal-body bg-dark text-white">
+                 <div class="form-group">
+                     <label> Type</label>
+                     <input [ngClass]="{'is-invalid': fileForm.controls.type_name.errors && checkpass}" formControlName="type_name" class="form-control" type="text" placeholder="Audio,Video,Zip..etc">
+                     <div class="invalid-feedback" *ngIf="fileForm.controls.type_name.errors">
+                         insert file name
+                     </div>
+                 </div>   
+ 
+                 <div class="form-group">
+                     <label>File Type_Name</label>
+                     <input [ngClass]="{'is-invalid': fileForm.controls.type.errors && checkpass}" formControlName="type" class="form-control" type="text" placeholder="MP3,MP4,Archive..etc">
+                     <div class="invalid-feedback" *ngIf="fileForm.controls.type.errors">
+                        insert type of file
+                     </div>
+                 </div>
+                 
+                 <div class="form-group">
+                     <label>File Icon</label>
+                         <input [ngClass]="{'is-invalid' : fileForm.controls.icon.errors && checkpass}" formControlName="icon" type="text" placeholder="icon" class="form-control" />
+                         <div class="invalid-feedback" *ngIf="fileForm.controls.icon.errors">
+                             insert icon only
+                         </div>
+                     </div>
+                </div>
+             </form>
+            <div class="modal-footer">
+                <!-- <button type="submit"  class="btn btn-outline-success btn-rounded waves-effect" >Add File</button> -->
+                <button type="button"  class="btn btn-danger btn-rounded waves-effect" #closebtn data-dismiss="modal">Close</button>
+                <input type="submit"  (click)="submit(closebtn)" value="{{ fileForm.controls._id.value == '' ? 'Add' : 'Update' }}" class="btn btn-outline-success btn-rounded waves-effect" />
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            </div>
+            <form [formGroup]="editForm">
+                <div class="modal-body bg-dark text-white">
+                 <div class="form-group">
+                     <label> Type</label>
+                     <input [ngClass]="{'is-invalid': editForm.controls.type_name.errors && checkform}" formControlName="type_name" class="form-control" type="text" >
+                     <div class="invalid-feedback" *ngIf="editForm.controls.type_name.errors">
+                         insert file name
+                     </div>
+                 </div>   
+ 
+                 <div class="form-group">
+                     <label>File Type_Name</label>
+                     <input [ngClass]="{'is-invalid': editForm.controls.type.errors && checkform}" formControlName="type" class="form-control" type="text" >
+                     <div class="invalid-feedback" *ngIf="editForm.controls.type.errors">
+                        insert type of file
+                     </div>
+                 </div>
+                 
+                 <div class="form-group">
+                     <label>File Icon</label>
+                         <input [ngClass]="{'is-invalid' : editForm.controls.icon.errors && checkform}" formControlName="icon" type="text"  class="form-control" />
+                         <div class="invalid-feedback" *ngIf="editForm.controls.icon.errors">
+                             insert icon only
+                         </div>
+                     </div>
+                </div>
+             </form>
+            <div class="modal-footer">
+                <button type="submit"  class="btn btn-outline-success btn-rounded waves-effect" (click)="add(closebtn)" >Add File</button>
+                <button type="button"  class="btn btn-danger btn-rounded waves-effect" #closebtn data-dismiss="modal">Close</button>
+               
+            </div>
+        </div>
+    </div>
+</div> --> 
+        

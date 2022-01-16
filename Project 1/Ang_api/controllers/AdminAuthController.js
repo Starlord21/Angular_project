@@ -5,8 +5,10 @@ var collName = "admin"
 var monogodb = require("mongodb")
 var MongoClient = monogodb.MongoClient
 var sha1 =require("sha1")
+var jwt = require("jsonwebtoken")
 
 routes.post("/",(req,res)=>{
+    console.log(req.body)
     MongoClient.connect(database.dbUrl,(err,con)=>{
         var db = con.db(database.dbName);
         pass = sha1(req.body.password)
@@ -18,10 +20,14 @@ routes.post("/",(req,res)=>{
                     var token = jwt.sign(result[0],database.encryptStr)
                     res.send({success :true, token : token})
                 }
+                else
+                {
+                    res.status(402).send({success : false, type : 2})
+                }
             }
             else
             {
-                res.status(401).send({success : false, msg : "unauthorizd access"})
+                res.status(401).send({success : false, type : 1})
             }
         })
     })
