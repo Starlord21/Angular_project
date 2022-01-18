@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FiletypeService } from '../../service/filetype.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
   selector: 'app-file-storage',
